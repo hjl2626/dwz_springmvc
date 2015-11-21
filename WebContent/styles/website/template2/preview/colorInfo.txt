@@ -1,0 +1,3 @@
+theme0:  #DE5000  nacarat
+theme1:  #00B2CB  blue
+theme2:  #CC4A62  pink

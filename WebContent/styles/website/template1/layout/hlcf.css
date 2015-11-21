@@ -1,0 +1,15 @@
+@charset "utf-8";
+/* CSS Document */
+/* layout */
+#header, #container, #footer{ margin:0 auto; padding:0px; width:950px; clear:both;}
+#sidebar{ width:158px; margin:10px 0 0 10px; _margin-left:5px; float:left;}
+#content{ width:760px; float:right; margin:10px 10px 0 0; _margin:10px 5px 0 0; clear:right;}
+.fp_list{ float:left; }
+/* areaEdit */
+#areaHeader{width:468px; height:60px; margin:5px 5px 0 0; overflow:hidden; float:right;}
+#logo{width:250px; height:60px; margin:10px 0 0 20px; overflow:hidden;}
+#areaSidebar{width:200px; float:right; margin:10px 0 0 0; }
+#areaBanner{ width:760px; overflow:hidden;}
+#areaFooter{ color:#636363; text-align:center; clear:both;}
+.contentWidth{ width:760px;}
+td{vertical-align:top;}

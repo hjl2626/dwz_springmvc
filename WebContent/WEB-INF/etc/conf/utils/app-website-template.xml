@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<app-webstore-template>
+	<!-- 
+		The first template is default template.
+		The first layout is default layout.
+		The first theme is default theme.
+	-->
+
+	<web-base-url>/home/jsp</web-base-url>
+	<web-style-url>/styles/website</web-style-url>
+
+	<web-template-list>
+		<template>
+			<!-- 
+				pictureUrl = <pre-pic-base> + 
+				'/' + <layout-list.layout.name> + '_' + <theme-list.theme.name>+ '_lg.' + <pre-pic-ext>;
+				thumbnailPictureUrl = <pre-pic-base> + 
+				'/' + <layout-list.layout.name> + '_' + <theme-list.theme.name>+ '_sm.' + <pre-pic-ext>;
+			-->
+			
+			<name>template1</name>
+			<label>Retail-01</label>
+			<description>Manufacturer Description</description>
+			<pre-pic-ext>gif</pre-pic-ext>
+			<pre-pic-base>/styles/website/template1/preview</pre-pic-base>
+			<layout-list>
+				<layout>
+					<name>hlcf</name>
+					<css>hlcf</css>
+					<index>1</index>
+					<description>hlcf</description>
+				</layout>
+				<layout>
+					<name>hcrf</name>
+					<css>hcrf</css>
+					<index>2</index>
+					<description>hcrf</description>
+				</layout>
+			</layout-list>
+			<theme-list>
+				<theme>
+					<name>theme0</name>
+					<css>#D32865</css>
+					<label>pink</label>
+					<description>
+						Retail and Wholesales pink
+					</description>
+				</theme>
+				<theme>
+					<name>theme1</name>
+					<css>#CD2929</css>
+					<label>yellow</label>
+					<description>Retail and Wholesales red</description>
+				</theme>
+				<theme>
+					<name>theme2</name>
+					<css>#E3930B</css>
+					<label>saffron</label>
+					<description>
+						Retail and Wholesales saffron
+					</description>
+				</theme>
+				<theme>
+					<name>theme3</name>
+					<css>#6081BE</css>
+					<label>blue</label>
+					<description>
+						Retail and Wholesales blue
+					</description>
+				</theme>
+				<theme>
+					<name>theme4</name>
+					<css>#1C9E83</css>
+					<label>green</label>
+					<description>
+						Retail and Wholesales green
+					</description>
+				</theme>
+				<theme>
+					<name>theme5</name>
+					<css>#DED31E</css>
+					<label>yellow</label>
+					<description>
+						Retail and Wholesales yellow
+					</description>
+				</theme>
+				<theme>
+					<name>theme6</name>
+					<css>#A02AB5</css>
+					<label>purple</label>
+					<description>
+						Retail and Wholesales purple
+					</description>
+				</theme>
+				<theme>
+					<name>theme7</name>
+					<css>#9C917F</css>
+					<label>coffee</label>
+					<description>
+						Retail and Wholesales purple
+					</description>
+				</theme>
+			</theme-list>
+		</template>
+		
+		<template>
+			<name>template2</name>
+			<label>Retail-02</label>
+			<description>Manufacturer Description</description>
+			<pre-pic-ext>gif</pre-pic-ext>
+			<pre-pic-base>/styles/website/template2/preview</pre-pic-base>
+			<layout-list>
+				<layout>
+					<name>hlcf</name>
+					<css>hlcf</css>
+					<index>1</index>
+					<description>hlcf</description>
+				</layout>
+				<layout>
+					<name>hcrf</name>
+					<css>hcrf</css>
+					<index>2</index>
+					<description>hcrf</description>
+				</layout>
+			</layout-list>
+			<theme-list>
+				<theme>
+					<name>theme0</name>
+					<css>#DE5000</css>
+					<label>nacarat</label>
+					<description>
+						Retail and Wholesales nacarat
+					</description>
+				</theme>
+				<theme>
+					<name>theme1</name>
+					<css>#00B2CB</css>
+					<label>blue</label>
+					<description>
+						Retail and Wholesales blue
+					</description>
+				</theme>
+				<theme>
+					<name>theme2</name>
+					<css>#CC4A62</css>
+					<label>pink</label>
+					<description>
+						Retail and Wholesales pink
+					</description>
+				</theme>
+			</theme-list>
+		</template>
+		
+		<template>
+			<name>template3</name>
+			<label>Retail-03</label>
+			<description>ComputeBusiness Template</description>
+			<pre-pic-ext>gif</pre-pic-ext>
+			<pre-pic-base>/styles/website/template3/preview</pre-pic-base>
+			<layout-list>
+				<layout>
+					<name>hlcf</name>
+					<css>hlcf</css>
+					<index>1</index>
+					<description>hlcf</description>
+				</layout>
+				<layout>
+					<name>hcrf</name>
+					<css>hcrf</css>
+					<index>2</index>
+					<description>hcrf</description>
+				</layout>	
+			</layout-list>
+			<theme-list>
+				<theme>
+					<name>theme0</name>
+					<css>#CD2929</css>
+					<label>black</label>
+					<description>Retail and Wholesales purple</description>
+				</theme>
+				<theme>
+					<name>theme1</name>
+					<css>#40628B</css>
+					<label>purple</label>
+					<description>Retail and Wholesales ultramarine</description>
+				</theme>
+				<theme>
+					<name>theme2</name>
+					<css>#727469</css>
+					<label>khaki</label>
+					<description>Retail and Wholesales grey</description>
+				</theme>
+			</theme-list>
+		</template>
+		
+		<template>
+			<name>template4</name>
+			<label>Retail-04</label>
+			<description>Manufacturer Description</description>
+			<pre-pic-ext>gif</pre-pic-ext>
+			<pre-pic-base>/styles/website/template4/preview</pre-pic-base>
+			<layout-list>
+				<layout>
+					<name>hlcf</name>
+					<css>hlcf</css>
+					<index>1</index>
+					<description>hlcf</description>
+				</layout>
+			</layout-list>
+			<theme-list>
+				<theme>
+					<name>theme0</name>
+					<css>#519BC8</css>
+					<label>blue</label>
+					<description>
+						Retail and Wholesales blue
+					</description>
+				</theme>
+				<theme>
+					<name>theme1</name>
+					<css>#6D6D6D</css>
+					<label>grey</label>
+					<description>
+						Retail and Wholesales grey
+					</description>
+				</theme>
+				<theme>
+					<name>theme2</name>
+					<css>#D775A6</css>
+					<label>pink</label>
+					<description>
+						Retail and Wholesales pink
+					</description>
+				</theme>
+			</theme-list>
+		</template>
+		<template>
+			<name>template5</name>
+			<label>Retail-05</label>
+			<description>Manufacturer Description</description>
+			<pre-pic-ext>gif</pre-pic-ext>
+			<pre-pic-base>/styles/website/template5/preview</pre-pic-base>
+			<layout-list>
+				<layout>
+					<name>hlcf</name>
+					<css>hlcf</css>
+					<index>1</index>
+					<description>hlcf</description>
+				</layout>
+				<layout>
+					<name>hcrf</name>
+					<css>hcrf</css>
+					<index>2</index>
+					<description>hcrf</description>
+				</layout>
+			</layout-list>
+			<theme-list>
+				<theme>
+					<name>theme0</name>
+					<css>#376DB3</css>
+					<label>azure</label>
+					<description>
+						Retail and Wholesales azure
+					</description>
+				</theme>
+				<theme>
+					<name>theme1</name>
+					<css>#4A3FAB</css>
+					<label>smalt</label>
+					<description>
+						Retail and Wholesales smalt
+					</description>
+				</theme>
+				<theme>
+					<name>theme2</name>
+					<css>#8241A8</css>
+					<label>purple</label>
+					<description>
+						Retail and Wholesales purple
+					</description>
+				</theme>
+			</theme-list>
+		</template>
+		<template>
+			<name>template6</name>
+			<label>Retail-06</label>
+			<description>Manufacturer Description</description>
+			<pre-pic-ext>gif</pre-pic-ext>
+			<pre-pic-base>/styles/website/template6/preview</pre-pic-base>
+			<layout-list>
+				<layout>
+					<name>hlcf</name>
+					<css>hlcf</css>
+					<index>1</index>
+					<description>hlcf</description>
+				</layout>
+				<layout>
+					<name>hcrf</name>
+					<css>hcrf</css>
+					<index>2</index>
+					<description>hcrf</description>
+				</layout>
+			</layout-list>
+			<theme-list>
+				<theme>
+					<name>theme0</name>
+					<css>#3D3327</css>
+					<label>brown</label>
+					<description>
+						Retail and Wholesales brown
+					</description>
+				</theme>
+				<theme>
+					<name>theme1</name>
+					<css>#5F0B1A</css>
+					<label>red</label>
+					<description>
+						Retail and Wholesales red
+					</description>
+				</theme>
+				<theme>
+					<name>theme2</name>
+					<css>#1A4005</css>
+					<label>green</label>
+					<description>
+						Retail and Wholesales green
+					</description>
+				</theme>
+			</theme-list>
+		</template>
+	</web-template-list>
+
+</app-webstore-template>

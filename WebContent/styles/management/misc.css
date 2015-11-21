@@ -1,0 +1,25 @@
+.site-theme {border: 1px solid #b7babc; width:180px; height:242px; overflow-y:hidden; float:left; padding: 5px; margin:5px}
+.site-theme:hover {border:solid 1px #ed1f24}
+.site-theme img {margin-bottom:5px}
+.site-theme .smPic{min-height:182px}
+.site-theme dl, .site-theme dt, .site-theme dd, .site-theme ul {margin:0; padding:0; background:#eeebea; height:20px; width:auto;}
+.site-theme dt {float:right; background:#ddd8d7}
+.site-theme dt a {color:#000; text-decoration:underline; padding:0 5px;line-height:150%;}
+.site-theme dd {float:none; width:180px}
+.site-theme dd ul {list-style:none}
+.site-theme dd ul li {float:left; display:inline; width:9px; height:18px; margin-left:8px}
+.site-theme dd ul li a {width:9px; height:18px; display:block; text-indent:-1000px; overflow:hidden}
+.site-theme dd ul li a:hover {background:url(./images/widget_01.gif) no-repeat -231px 5px}
+.site-theme dd ul li.down a {background:url(./images/widget_01.gif) no-repeat -231px 0}
+.site-themeList {width:100%;}
+.site-themeList .theme {cursor:pointer}
+.site-themeList .themeFocus {border:solid 2px #000; padding:4px}
+.site-themeLayout {margin-bottom:5px; list-style:none; border-bottom:solid 5px #FFF}
+.site-themeLayout li {float:left; display:inline; width:18px; height:19px; margin-left:8px}
+.site-themeLayout li a {width:14px; height:15px; border:solid 1px #ccc; padding:1px; display:block; text-indent:-1000px; overflow:hidden}
+.site-themeLayout li a:hover {border:solid 1px #3f3f3f; padding:1px}
+.site-themeLayout li.down a {border:solid 1px #ee2225; padding:1px}
+.site-themeLayout li.hlcf {background:#FFF url(./images/widget_01.gif) no-repeat -264px 0}
+.site-themeLayout li.hcrf {background:#FFF url(./images/widget_01.gif) no-repeat -283px 0}
+.site-themeLayout li.hcf {background:#FFF url(./images/widget_01.gif) no-repeat -302px 0}
+.site-themeLayout li.hlcrf {background:#FFF url(./images/widget_01.gif) no-repeat -321px 0}

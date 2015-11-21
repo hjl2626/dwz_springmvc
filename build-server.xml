@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="dwzmvc-server" default="init">
+	<property file="build.properties"/>
+
+	<target name="init">
+		<echo message="build ${ant.project.name} "></echo>
+		<antcall target="process" />
+	</target>
+	
+	<target name="process">
+		<antcall target="zip_server_upload_all" />
+	</target>
+	
+	<target name="zip_server_upload_all" description="zip [*.jsp,*.class...] to zip file.">
+		<!-- copy web app files -->
+		<copy todir="${server.upload}/${app.website}">
+			<fileset dir="../${app.website}/WebContent">
+			    <include name="**/*.*"/>
+				<exclude name="**/*.jar"/>
+			    <exclude name="**/*.svn"/>
+				<exclude name="**/*.git"/>
+				<exclude name="**/app-core.properties"/>
+				<exclude name="**/jdbc.properties"/>
+				<exclude name="**/log4j.properties"/>
+			</fileset>
+		</copy>
+
+		<!-- zip all files -->
+		<zip destfile="${server.upload}/${app.website}.zip" basedir="${server.upload}/${app.website}"/>
+
+		<!-- delete web app base dir -->
+		<delete dir="${server.upload}/${app.website}" />
+	</target>
+	
+</project>

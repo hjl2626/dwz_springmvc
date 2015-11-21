@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="dwz.persistence.mapper.WebPageMapper">
+	<resultMap id="rm" type="dwz.persistence.beans.WebPage">
+		<result property="id" jdbcType="INTEGER" column="ID"/>
+		<result property="name" jdbcType="VARCHAR" column="NAME"/>
+		<result property="sequence" jdbcType="INTEGER" column="SEQUENCE"/>
+		<result property="title" jdbcType="VARCHAR" column="TITLE"/>
+		<result property="metaKeywords" jdbcType="VARCHAR" column="META_KEYWORDS"/>
+		<result property="metaDescription" jdbcType="VARCHAR" column="META_DESCRIPTION"/>
+		<result property="content" jdbcType="LONGVARCHAR" column="CONTENT"/>
+		<result property="target" jdbcType="CHAR" column="TARGET"/>
+		<result property="insertDate" jdbcType="TIMESTAMP" column="INSERT_DATE"/>
+		<result property="updateDate" jdbcType="TIMESTAMP" column="UPDATE_DATE"/>
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID,
+		NAME,
+		SEQUENCE,
+		TITLE,
+		META_KEYWORDS,
+		META_DESCRIPTION,
+		CONTENT,
+		TARGET,
+		INSERT_DATE,
+		UPDATE_DATE
+	</sql>
+	<select id="load" parameterType="java.lang.Integer" resultMap="rm">
+		SELECT 
+			<include refid="Base_Column_List" />
+		FROM web_page 
+		WHERE 
+			ID = #{id} 
+	</select>
+	<!-- 查询所有的ID -->
+	<select id="findAllIds" resultType="java.lang.Integer">
+		SELECT ID FROM web_page
+	</select>
+
+	<!-- 按Id删除 -->
+	<delete id="delete" parameterType="java.lang.Integer">
+		DELETE FROM web_page WHERE
+		ID = #{id} 
+	</delete>
+	 <!-- 插入 -->
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO web_page (
+			ID,
+			NAME,
+			SEQUENCE,
+			TITLE,
+			META_KEYWORDS,
+			META_DESCRIPTION,
+			CONTENT,
+			TARGET,
+			INSERT_DATE,
+			UPDATE_DATE
+		) VALUES (
+			#{id},
+			#{name},
+			#{sequence},
+			#{title},
+			#{metaKeywords},
+			#{metaDescription},
+			#{content},
+			#{target},
+			#{insertDate},
+			#{updateDate}
+		)
+	</insert>
+	
+	<select id="countAll" resultType="java.lang.Integer">
+		SELECT count(ID) FROM web_page	
+	</select>
+	
+	<select id="findAll" resultMap="rm">
+		SELECT 
+			<include refid="Base_Column_List" />
+		FROM web_page
+	</select>
+	
+	<select id="findByTarget" resultMap="rm">
+		SELECT 
+			<include refid="Base_Column_List" />
+		FROM web_page where TARGET like "%"#{target}"%"
+	</select>
+	
+	<!-- 更新 -->
+	<update id="updateSelective" parameterType="dwz.persistence.beans.WebPage">
+		UPDATE web_page 
+			<set>
+				<if test="name!=null">
+				NAME = #{name},
+				</if>
+				<if test="sequence!=null">
+				SEQUENCE = #{sequence},
+				</if>
+				<if test="title!=null">
+				TITLE = #{title},
+				</if>
+				<if test="metaKeywords!=null">
+				META_KEYWORDS = #{metaKeywords},
+				</if>
+				<if test="metaDescription!=null">
+				META_DESCRIPTION = #{metaDescription},
+				</if>
+				<if test="content!=null">
+				CONTENT = #{content},
+				</if>
+				<if test="target!=null">
+				TARGET = #{target},
+				</if>
+				<if test="insertDate!=null">
+				INSERT_DATE = #{insertDate},
+				</if>
+				<if test="updateDate!=null">
+				UPDATE_DATE = #{updateDate}
+				</if>
+			</set>
+		WHERE 
+			ID = #{id}
+	</update>
+	
+	<update id="update" parameterType="dwz.persistence.beans.WebPage">
+		UPDATE web_page SET
+			NAME = #{name},
+			SEQUENCE = #{sequence},
+			TITLE = #{title},
+			META_KEYWORDS = #{metaKeywords},
+			META_DESCRIPTION = #{metaDescription},
+			CONTENT = #{content},
+			TARGET = #{target},
+			INSERT_DATE = #{insertDate},
+			UPDATE_DATE = #{updateDate}
+		WHERE 
+			ID = #{id} 
+	</update>
+	
+</mapper>
+

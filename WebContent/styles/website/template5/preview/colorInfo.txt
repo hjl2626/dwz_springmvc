@@ -1,0 +1,3 @@
+theme0:  #376DB3  azure
+theme1:  #4A3FAB  smalt
+theme2:  #8241A8  purple

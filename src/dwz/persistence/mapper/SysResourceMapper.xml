@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="dwz.persistence.mapper.SysResourceMapper">
+	<resultMap id="rm" type="dwz.persistence.beans.SysResource">
+		<result property="id" jdbcType="INTEGER" column="ID"/>
+		<result property="sn" jdbcType="VARCHAR" column="SN"/>
+		<result property="title" jdbcType="VARCHAR" column="TITLE"/>
+		<result property="remark" jdbcType="VARCHAR" column="REMARK"/>
+		<result property="pid" jdbcType="INTEGER" column="PID"/>
+		<result property="lft" jdbcType="INTEGER" column="LFT"/>
+		<result property="rgt" jdbcType="INTEGER" column="RGT"/>
+		<result property="level" jdbcType="INTEGER" column="LEVEL"/>
+		<result property="insertDate" jdbcType="TIMESTAMP" column="INSERT_DATE"/>
+		<result property="updateDate" jdbcType="TIMESTAMP" column="UPDATE_DATE"/>
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID,
+		SN,
+		TITLE,
+		REMARK,
+		PID,
+		LFT,
+		RGT,
+		LEVEL,
+		INSERT_DATE,
+		UPDATE_DATE
+	</sql>
+	<select id="load" parameterType="java.lang.Integer" resultMap="rm">
+		SELECT 
+			<include refid="Base_Column_List" />
+		FROM sys_resource 
+		WHERE 
+			ID = #{id} 
+	</select>
+	<!-- 查询所有的ID -->
+	<select id="findAllIds" resultType="java.lang.Integer">
+		SELECT ID FROM sys_resource
+	</select>
+
+	<!-- 按Id删除 -->
+	<delete id="delete" parameterType="java.lang.Integer">
+		DELETE FROM sys_resource WHERE
+		ID = #{id} 
+	</delete>
+	 <!-- 插入 -->
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO sys_resource (
+			ID,
+			SN,
+			TITLE,
+			REMARK,
+			PID,
+			LFT,
+			RGT,
+			LEVEL,
+			INSERT_DATE,
+			UPDATE_DATE
+		) VALUES (
+			#{id},
+			#{sn},
+			#{title},
+			#{remark},
+			#{pid},
+			#{lft},
+			#{rgt},
+			#{level},
+			#{insertDate},
+			#{updateDate}
+		)
+	</insert>
+	
+	<select id="countAll" resultType="java.lang.Integer">
+		SELECT count(ID) FROM sys_resource	
+	</select>
+	
+	<select id="findAll" resultMap="rm">
+		SELECT 
+			<include refid="Base_Column_List" />
+		FROM sys_resource
+	</select>
+	
+	<!-- 更新 -->
+	<update id="updateSelective" parameterType="dwz.persistence.beans.SysResource">
+		UPDATE sys_resource 
+			<set>
+				<if test="sn!=null">
+				SN = #{sn},
+				</if>
+				<if test="title!=null">
+				TITLE = #{title},
+				</if>
+				<if test="remark!=null">
+				REMARK = #{remark},
+				</if>
+				<if test="pid!=null">
+				PID = #{pid},
+				</if>
+				<if test="lft!=null">
+				LFT = #{lft},
+				</if>
+				<if test="rgt!=null">
+				RGT = #{rgt},
+				</if>
+				<if test="level!=null">
+				LEVEL = #{level},
+				</if>
+				<if test="insertDate!=null">
+				INSERT_DATE = #{insertDate},
+				</if>
+				<if test="updateDate!=null">
+				UPDATE_DATE = #{updateDate}
+				</if>
+			</set>
+		WHERE 
+			ID = #{id}
+	</update>
+	
+	<update id="update" parameterType="dwz.persistence.beans.SysResource">
+		UPDATE sys_resource SET
+			SN = #{sn},
+			TITLE = #{title},
+			REMARK = #{remark},
+			PID = #{pid},
+			LFT = #{lft},
+			RGT = #{rgt},
+			LEVEL = #{level},
+			INSERT_DATE = #{insertDate},
+			UPDATE_DATE = #{updateDate}
+		WHERE 
+			ID = #{id} 
+	</update>
+	
+</mapper>
+

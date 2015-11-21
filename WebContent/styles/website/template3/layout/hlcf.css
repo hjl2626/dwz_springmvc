@@ -1,0 +1,8 @@
+@charset "utf-8";
+/*layout*/
+#header, #container, #footer{ width:966px; margin:0 auto; padding:0px; clear:both;}
+#content, .catogeryMain, #areaBanner, .productMain{width:760px; float:right;}
+#areaBanner{ overflow:hidden; width:760px;}
+#sidebar{float:left; clear:left; margin:0;}
+#areaSidebar{ float:left; width:200px;clear:left;}
+#container{ min-height:400px;}

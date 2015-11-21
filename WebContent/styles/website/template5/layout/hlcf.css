@@ -1,0 +1,13 @@
+@charset "utf-8";
+/*layout*/
+#header, #container{border-left:1px solid #B5BFC9;border-right:1px solid #B5BFC9; margin:0 auto; width:960px;}
+#footer{ width:960px; margin:0 auto;}
+#areaHeader{width:468px; height:60px;overflow:hidden; position:absolute; top:20px; right:25px;}
+#areaBanner{ width:760px; overflow:hidden; float:right; clear:right;}
+#sidebar{float:left; margin:10px 0 0 10px;_margin:10px 0 0 5px; width:170px; overflow:hidden;}
+#areaSidebar{float:right; clear:right; width:200px;overflow:hidden; padding:0px; margin:10px 10px 0 0; _margin:10px 5px 0 0;}
+#areaFooter{ color:#333333; margin:10px 0 0 0; padding:0px; text-align:center;}
+#container{}
+#content{ float:right; clear:right; margin:10px 10px 0 0; _margin:10px 5px 0 0; width:760px;}
+
+.fp_list{width:551px; float:left; *float:none; margin:10px 0 0 0; *margin:10px 0 0 190px; _margin:10px 0 0 187px;}

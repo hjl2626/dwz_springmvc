@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="dwz.persistence.mapper.InfNewsMapper">
+	<resultMap id="rm" type="dwz.persistence.beans.InfNews">
+		<result property="id" jdbcType="INTEGER" column="ID"/>
+		<result property="type" jdbcType="CHAR" column="TYPE"/>
+		<result property="status" jdbcType="CHAR" column="STATUS"/>
+		<result property="title" jdbcType="VARCHAR" column="TITLE"/>
+		<result property="content" jdbcType="LONGVARCHAR" column="CONTENT"/>
+		<result property="author" jdbcType="VARCHAR" column="AUTHOR"/>
+		<result property="source" jdbcType="VARCHAR" column="SOURCE"/>
+		<result property="insertDate" jdbcType="TIMESTAMP" column="INSERT_DATE"/>
+		<result property="updateDate" jdbcType="TIMESTAMP" column="UPDATE_DATE"/>
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID,
+		TYPE,
+		STATUS,
+		TITLE,
+		CONTENT,
+		AUTHOR,
+		SOURCE,
+		INSERT_DATE,
+		UPDATE_DATE
+	</sql>
+	<select id="load" parameterType="java.lang.Integer" resultMap="rm">
+		SELECT 
+			<include refid="Base_Column_List" />
+		FROM inf_news 
+		WHERE 
+			ID = #{id} 
+	</select>
+	<!-- 查询所有的ID -->
+	<select id="findAllIds" resultType="java.lang.Integer">
+		SELECT ID FROM inf_news
+	</select>
+
+	<!-- 按Id删除 -->
+	<delete id="delete" parameterType="java.lang.Integer">
+		DELETE FROM inf_news WHERE
+		ID = #{id} 
+	</delete>
+	 <!-- 插入 -->
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO inf_news (
+			ID,
+			TYPE,
+			STATUS,
+			TITLE,
+			CONTENT,
+			AUTHOR,
+			SOURCE,
+			INSERT_DATE,
+			UPDATE_DATE
+		) VALUES (
+			#{id},
+			#{type},
+			#{status},
+			#{title},
+			#{content},
+			#{author},
+			#{source},
+			#{insertDate},
+			#{updateDate}
+		)
+	</insert>
+	
+	<select id="countAll" resultType="java.lang.Integer">
+		SELECT count(ID) FROM inf_news	
+	</select>
+	
+	<select id="findAll" resultMap="rm">
+		SELECT 
+			<include refid="Base_Column_List" />
+		FROM inf_news
+	</select>
+	<select id="findPrev" resultMap="rm" parameterType="map">
+		SELECT <include refid="Base_Column_List" /> FROM inf_news c
+		WHERE c.TYPE = #{type} AND c.UPDATE_DATE &gt; #{updateDate} AND c.STATUS = 'ACTIVE'
+		ORDER BY c.UPDATE_DATE LIMIT 0,1
+	</select>
+
+	<select id="findNext" resultMap="rm" parameterType="map">
+		SELECT <include refid="Base_Column_List" /> FROM inf_news c
+		WHERE c.TYPE = #{type} AND c.UPDATE_DATE &lt; #{updateDate} AND c.STATUS = 'ACTIVE'
+		ORDER BY c.UPDATE_DATE DESC LIMIT 0,1
+	</select>
+	<select id="findPageBreakByTypeAndStatus" resultMap="rm" parameterType="map">
+		SELECT <include refid="Base_Column_List" /> FROM inf_news c
+		WHERE c.TYPE = #{type} AND c.STATUS = #{status} 
+		ORDER BY c.UPDATE_DATE DESC
+	</select>
+
+	<select id="findPageBreakByCondition" resultMap="rm" parameterType="map">
+		SELECT 
+	        <include refid="Base_Column_List" />
+		from inf_news c  
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			c.STATUS != 'delete'
+		    <if test="type != null">
+				AND c.TYPE = #{type} 
+      		</if>
+      		<if test="status != null">
+				AND c.STATUS = #{status} 
+      		</if>
+			<if test="startDate != null">
+				AND c.UPDATE_DATE &gt;= #{startDate} 
+			</if>
+			<if test="endDate != null">
+				AND c.UPDATE_DATE &lt;= #{endDate} 
+			</if>
+			<if test="keywords != null">
+				AND (
+					c.TITLE LIKE "%"#{keywords}"%"
+					or c.AUTHOR LIKE "%"#{keywords}"%"
+					or c.SOURCE LIKE "%"#{keywords}"%"
+				)
+      		</if>
+      	</trim>
+      	order by c.INSERT_DATE DESC 
+	</select>
+	<select id="findNumberByCondition" resultType="java.lang.Integer" parameterType="map">
+		select count(0) as a from inf_news c
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			c.STATUS != 'delete'
+		    <if test="type != null">
+				AND c.TYPE = #{type} 
+      		</if>
+      		<if test="status != null">
+				AND c.STATUS = #{status} 
+      		</if>
+			<if test="startDate != null">
+				AND c.UPDATE_DATE &gt;= #{startDate} 
+			</if>
+			<if test="endDate != null">
+				AND c.UPDATE_DATE &lt;= #{endDate} 
+			</if>
+			<if test="keywords != null">
+				AND (
+					c.TITLE LIKE "%"#{keywords}"%"
+					or c.AUTHOR LIKE "%"#{keywords}"%"
+					or c.SOURCE LIKE "%"#{keywords}"%"
+				)
+      		</if>
+      	</trim>
+	</select>
+	
+	<!-- 更新 -->
+	<update id="updateSelective" parameterType="dwz.persistence.beans.InfNews">
+		UPDATE inf_news 
+			<set>
+				<if test="type!=null">
+				TYPE = #{type},
+				</if>
+				<if test="status!=null">
+				STATUS = #{status},
+				</if>
+				<if test="title!=null">
+				TITLE = #{title},
+				</if>
+				<if test="content!=null">
+				CONTENT = #{content},
+				</if>
+				<if test="author!=null">
+				AUTHOR = #{author},
+				</if>
+				<if test="source!=null">
+				SOURCE = #{source},
+				</if>
+				<if test="insertDate!=null">
+				INSERT_DATE = #{insertDate},
+				</if>
+				<if test="updateDate!=null">
+				UPDATE_DATE = #{updateDate}
+				</if>
+			</set>
+		WHERE 
+			ID = #{id}
+	</update>
+	
+	<update id="update" parameterType="dwz.persistence.beans.InfNews">
+		UPDATE inf_news SET
+			TYPE = #{type},
+			STATUS = #{status},
+			TITLE = #{title},
+			CONTENT = #{content},
+			AUTHOR = #{author},
+			SOURCE = #{source},
+			INSERT_DATE = #{insertDate},
+			UPDATE_DATE = #{updateDate}
+		WHERE 
+			ID = #{id} 
+	</update>
+	
+	<update id="updateAllStatus" parameterType="map">
+		UPDATE inf_news SET
+			STATUS = #{status},
+			UPDATE_DATE = #{updateDate}
+		WHERE 
+			ID = #{id} 
+	</update>
+</mapper>
+

@@ -1,0 +1,41 @@
+@charset "utf-8";
+/*layout*/
+#header, #container, #footer{ width:966px; margin:0 auto; padding:0px; clear:both;}
+#content, #areaBanner, .fp_list{width:760px; float:right;}
+#areaBanner{ overflow:hidden; width:760px;}
+#sidebar{float:left; clear:left; margin:0; width:200px;}
+#areaSidebar{ width:200px; float:left; clear:left;}
+#container{ min-height:350px;}
+ul.MenuBarVertical{ *width:198px;_width:196px;}
+.catogeryMain ul li .MenuBarItemSubmenu{}
+.catogeryMain ul li .MenuBarItemSubmenu:hover{}
+.catogeryMain ul li .MenuBarItemSubmenu span{background: url(images/categorySubMenu.gif) no-repeat; font-size:7px; padding:0 2px; margin-left:4px;}
+.catogeryMain ul li .MenuBarItemSubmenu span:hover{background: url(images/categorySubMenu.gif) 0 -7px no-repeat; font-size:7px; padding:0 2px; margin-left:4px;}
+ul.MenuBarVertical li{position:relative; *width:196px; *float:left;}
+ul.MenuBarVertical li a{display:block; color:#238DB3; font-family:Arial; font-size:12px; font-weight:bold; text-decoration:none; background:#EDF3F7 url(images/cion_menuY.gif) 10px center no-repeat; padding:5px 0 5px 27px; border:1px solid #FFFFFF;}
+ul.MenuBarVertical li ul li{ *width:174px;border-right:1px solid #0F50AE; background:#ffffff; padding:0px 5px 6px 5px;}
+ul.MenuBarVertical li ul li a{ background:#ffffff; border-bottom:1px dashed #666666; padding:2px 0 2px 15px;font-size:11px;}
+ul.MenuBarVertical li a.MenuBarItemHover{background-color:#ffffff;}
+ul.MenuBarVertical li a.MenuBarItemSubmenuHover, ul.MenuBarVertical li a.MenuBarSubmenuVisible{ background-color:#ffffff;color:#DE8442; border:1px solid #0F50AE; border-left:1px solid #7597C8;border-right:none; z-index:1030; position:relative; width:153px;}
+ul.MenuBarVertical li ul li a.MenuBarItemHover, ul.MenuBarVertical li ul li a.MenuBarItemSubmenuHover, ul.MenuBarVertical li ul li a.MenuBarSubmenuVisible{border:1px solid #ffffff; font-size:11px; border-bottom:1px dashed #666666; background:#DC7B34; color:#ffffff;}
+ul.MenuBarVertical ul
+{	background:url(images/categorySubTop.gif) no-repeat;
+border-bottom:1px solid #0F50AE;
+border-left:1px solid #0F50AE; 
+	width:185px;
+	margin:0;
+	padding:0;
+	padding-top:9px;
+	position: absolute;
+	z-index: 1020;
+	cursor: default;
+	left: -1000em;
+	top: 0px;
+}
+ul.MenuBarVertical ul.MenuBarSubmenuVisible{left: 180px;}
+ul.MenuBarVertical ul li ul.MenuBarSubmenuVisible{left: 175px;}
+ul.MenuBarVertical iframe{position: absolute;z-index: 1010;	filter:alpha(opacity:0.1);}
+@media screen, projection
+{
+	ul.MenuBarVertical li.MenuBarItemIE{}
+}

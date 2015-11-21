@@ -1,0 +1,3 @@
+theme0:  #3D3327  brown
+theme1:  #5F0B1A  red
+theme2:  #1A4005  green

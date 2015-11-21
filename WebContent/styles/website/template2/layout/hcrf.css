@@ -1,0 +1,12 @@
+@charset "utf-8";
+/*layout*/
+#header, #container, #footer{margin:0 auto; width:968px;}
+#areaHeader{width:468px; height:60px;overflow:hidden; position:absolute; top:18px; left:260px;}
+#areaBanner{ width:760px; overflow:hidden; float:left; margin:8px 0 0 0;clear:left;}
+#sidebar{float:right; margin:8px 0 0 0;width:182px; overflow:hidden;}
+#areaFooter{ color:#333333; margin:8px 0 0 0; padding:0px; text-align:center;}
+#container{}
+#content{ float:left; clear:left; margin:8px 0 0 0; width:760px;}
+#areaSidebar{ margin:8px 0 0 0; width:200px; overflow:hidden;}
+
+.fp_list{width:760px; float:left;margin:8px 0 0 0;}

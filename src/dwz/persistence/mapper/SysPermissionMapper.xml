@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="dwz.persistence.mapper.SysPermissionMapper">
+	<resultMap id="rm" type="dwz.persistence.beans.SysPermission">
+		<result property="roleId" jdbcType="INTEGER" column="ROLE_ID"/>
+		<result property="resourceId" jdbcType="INTEGER" column="RESOURCE_ID"/>
+	</resultMap>
+	<sql id="Base_Column_List">
+		ROLE_ID,
+		RESOURCE_ID
+	</sql>
+	<select id="load" parameterType="java.lang.Integer" resultMap="rm">
+		SELECT 
+			<include refid="Base_Column_List" />
+		FROM sys_permission 
+		WHERE 
+			ROLE_ID = #{id}  AND 
+			RESOURCE_ID = #{id} 
+	</select>
+	<!-- 查询所有的ID -->
+	<select id="findAllIds" resultType="java.lang.Integer">
+		SELECT ROLE_ID FROM sys_permission
+	</select>
+
+	<!-- 按Id删除 -->
+	<delete id="delete" parameterType="java.lang.Integer">
+		DELETE FROM sys_permission WHERE
+		ROLE_ID = #{id}  AND 
+		RESOURCE_ID = #{id} 
+	</delete>
+	 <!-- 插入 -->
+	<insert id="insert" useGeneratedKeys="true" keyProperty="roleId">
+		INSERT INTO sys_permission (
+			ROLE_ID,
+			RESOURCE_ID
+		) VALUES (
+			#{roleId},
+			#{resourceId}
+		)
+	</insert>
+	
+	<select id="countAll" resultType="java.lang.Integer">
+		SELECT count(ROLE_ID) FROM sys_permission	
+	</select>
+	
+	<select id="findAll" resultMap="rm">
+		SELECT 
+			<include refid="Base_Column_List" />
+		FROM sys_permission
+	</select>
+	
+	<!-- 更新 -->
+	<update id="updateSelective" parameterType="dwz.persistence.beans.SysPermission">
+		UPDATE sys_permission 
+			<set>
+			</set>
+		WHERE 
+			ROLE_ID = #{roleId} AND 
+			RESOURCE_ID = #{resourceId}
+	</update>
+	
+	<update id="update" parameterType="dwz.persistence.beans.SysPermission">
+		UPDATE sys_permission SET
+		WHERE 
+			ROLE_ID = #{roleId}  AND 
+			RESOURCE_ID = #{resourceId} 
+	</update>
+	
+</mapper>
+

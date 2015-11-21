@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<!-- spring mvc -->
+	<!-- web mvc configuration -->
+	<!-- view resolver 视图解析器 -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+		p:viewClass="org.springframework.web.servlet.view.JstlView" 
+		p:prefix="/WEB-INF/jsp/"
+		p:suffix=".jsp" />
+	
+	<!-- 扫描web包，应用Spring的注解 @Controller -->
+	<context:component-scan base-package="dwz.web" />
+	
+	<!-- MVC Annotation Driven -->
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<bean id="utf8StringHttpMessageConverter" class="org.springframework.http.converter.StringHttpMessageConverter">
+					<property name="supportedMediaTypes">
+						<list>
+							<value>text/plain;charset=UTF-8</value>
+						</list>
+					</property>
+				</bean>
+				
+				<bean id="jacksonMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+			        <!-- 解决 HttpMediaTypeNotAcceptableException: Could not find acceptable representation -->
+			        <property name="supportedMediaTypes">
+			            <list>
+			                <value>text/html;charset=UTF-8</value>
+			            </list>
+			        </property>
+    			</bean>
+    			
+			</list>
+		</property>
+	</bean>
+	
+	<mvc:annotation-driven conversion-service="conversionService" />
+	<bean id="conversionService"
+		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		<property name="converters">
+			<list>
+				<bean class="dwz.plugins.StringToDateConverter" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="exceptionResolver"
+		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="dwz.framework.sys.exception.ServiceRuntimeException">ServiceRuntimeException</prop> 
+				<prop key="dwz.framework.sys.exception.ServiceException">ServiceException</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- CommonsMultipartResolver -->
+
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="1024000000"></property>
+	</bean>
+
+	<!-- MessageResolve -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>res.web.messages</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver" 
+		p:cookieName="clientLanguage"
+		p:cookieMaxAge="10000"
+		p:cookiePath="/"
+		p:defaultLocale="zh"/>
+	<mvc:interceptors>
+		<bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />
+	</mvc:interceptors>
+	
+	<bean id="springMethodInterceptor" class="dwz.adapter.web.interceptor.MethodAuthorityInterceptor"></bean>
+	<aop:config>
+		<!--切入点-->
+		<aop:pointcut id="webController" expression="execution(public * dwz.web.*.*(..))"/>
+		<aop:pointcut id="managementController" expression="execution(public * dwz.web.management.*.*(..))"/>
+		<!--在该切入点使用自定义拦截器-->
+		<aop:advisor pointcut-ref="webController" advice-ref="springMethodInterceptor"/>
+		<aop:advisor pointcut-ref="managementController" advice-ref="springMethodInterceptor"/>
+	</aop:config>
+	
+	<mvc:resources mapping="/styles/**" location="/styles/" cache-period="31536000"/>
+	<mvc:resources mapping="/content/**" location="/content/" cache-period="31536000"/>
+</beans> 

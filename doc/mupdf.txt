@@ -1,0 +1,12 @@
+
+#yum install libXau-devel
+#yum install ibX11-devel
+#yum install libXext-devel
+
+apt-get install libxau-dev
+apt-get install libx11-dev
+apt-get install libxext-dev
+
+cd /opt/mupdf
+make
+make install

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="dwz.persistence.mapper.WebWebsiteMapper">
+	<resultMap id="rm" type="dwz.persistence.beans.WebWebsite">
+		<result property="id" jdbcType="INTEGER" column="ID"/>
+		<result property="title" jdbcType="VARCHAR" column="TITLE"/>
+		<result property="metaKeywords" jdbcType="VARCHAR" column="META_KEYWORDS"/>
+		<result property="metaDescription" jdbcType="VARCHAR" column="META_DESCRIPTION"/>
+		<result property="template" jdbcType="VARCHAR" column="TEMPLATE"/>
+		<result property="layout" jdbcType="VARCHAR" column="LAYOUT"/>
+		<result property="theme" jdbcType="VARCHAR" column="THEME"/>
+		<result property="logo" jdbcType="LONGVARCHAR" column="LOGO"/>
+		<result property="areaHeader" jdbcType="LONGVARCHAR" column="AREA_HEADER"/>
+		<result property="areaSidebar" jdbcType="LONGVARCHAR" column="AREA_SIDEBAR"/>
+		<result property="areaBanner" jdbcType="LONGVARCHAR" column="AREA_BANNER"/>
+		<result property="areaFooter" jdbcType="LONGVARCHAR" column="AREA_FOOTER"/>
+		<result property="icp" jdbcType="VARCHAR" column="ICP"/>
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID,
+		TITLE,
+		META_KEYWORDS,
+		META_DESCRIPTION,
+		TEMPLATE,
+		LAYOUT,
+		THEME,
+		LOGO,
+		AREA_HEADER,
+		AREA_SIDEBAR,
+		AREA_BANNER,
+		AREA_FOOTER,
+		ICP
+	</sql>
+	<select id="load" parameterType="java.lang.Integer" resultMap="rm">
+		SELECT 
+			<include refid="Base_Column_List" />
+		FROM web_website 
+		WHERE 
+			ID = #{id} 
+	</select>
+	<!-- 查询所有的ID -->
+	<select id="findAllIds" resultType="java.lang.Integer">
+		SELECT ID FROM web_website
+	</select>
+
+	<!-- 按Id删除 -->
+	<delete id="delete" parameterType="java.lang.Integer">
+		DELETE FROM web_website WHERE
+		ID = #{id} 
+	</delete>
+	 <!-- 插入 -->
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO web_website (
+			ID,
+			TITLE,
+			META_KEYWORDS,
+			META_DESCRIPTION,
+			TEMPLATE,
+			LAYOUT,
+			THEME,
+			LOGO,
+			AREA_HEADER,
+			AREA_SIDEBAR,
+			AREA_BANNER,
+			AREA_FOOTER,
+			ICP
+		) VALUES (
+			#{id},
+			#{title},
+			#{metaKeywords},
+			#{metaDescription},
+			#{template},
+			#{layout},
+			#{theme},
+			#{logo},
+			#{areaHeader},
+			#{areaSidebar},
+			#{areaBanner},
+			#{areaFooter},
+			#{icp}
+		)
+	</insert>
+	
+	<select id="countAll" resultType="java.lang.Integer">
+		SELECT count(ID) FROM web_website	
+	</select>
+	
+	<select id="findAll" resultMap="rm">
+		SELECT 
+			<include refid="Base_Column_List" />
+		FROM web_website
+	</select>
+	
+	<!-- 更新 -->
+	<update id="updateSelective" parameterType="dwz.persistence.beans.WebWebsite">
+		UPDATE web_website 
+			<set>
+				<if test="title!=null">
+				TITLE = #{title},
+				</if>
+				<if test="metaKeywords!=null">
+				META_KEYWORDS = #{metaKeywords},
+				</if>
+				<if test="metaDescription!=null">
+				META_DESCRIPTION = #{metaDescription},
+				</if>
+				<if test="template!=null">
+				TEMPLATE = #{template},
+				</if>
+				<if test="layout!=null">
+				LAYOUT = #{layout},
+				</if>
+				<if test="theme!=null">
+				THEME = #{theme},
+				</if>
+				<if test="logo!=null">
+				LOGO = #{logo},
+				</if>
+				<if test="areaHeader!=null">
+				AREA_HEADER = #{areaHeader},
+				</if>
+				<if test="areaSidebar!=null">
+				AREA_SIDEBAR = #{areaSidebar},
+				</if>
+				<if test="areaBanner!=null">
+				AREA_BANNER = #{areaBanner},
+				</if>
+				<if test="areaFooter!=null">
+				AREA_FOOTER = #{areaFooter},
+				</if>
+				<if test="icp!=null">
+				ICP = #{icp}
+				</if>
+			</set>
+		WHERE 
+			ID = #{id}
+	</update>
+	
+	<update id="update" parameterType="dwz.persistence.beans.WebWebsite">
+		UPDATE web_website SET
+			TITLE = #{title},
+			META_KEYWORDS = #{metaKeywords},
+			META_DESCRIPTION = #{metaDescription},
+			TEMPLATE = #{template},
+			LAYOUT = #{layout},
+			THEME = #{theme},
+			LOGO = #{logo},
+			AREA_HEADER = #{areaHeader},
+			AREA_SIDEBAR = #{areaSidebar},
+			AREA_BANNER = #{areaBanner},
+			AREA_FOOTER = #{areaFooter},
+			ICP = #{icp}
+		WHERE 
+			ID = #{id} 
+	</update>
+	
+</mapper>
+
